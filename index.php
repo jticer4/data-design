@@ -82,7 +82,7 @@ echo "
 </ul>
 
 
-<h3>Relations</h3>
+<h3>Relations:</h3>
 <ul>
 <li>Each author can have multiple articles.(1-n)</li>
 <li>On this site each artile is only written by 1 author.(1-1)</li>
