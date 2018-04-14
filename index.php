@@ -62,6 +62,22 @@ echo "
 </ul>
 
 <h2>Conceptual Model: </h2>
+<h3>Entities and Attributes</h3>
+<h4>Author:</h4>
+<p>authorId(primary key)<br>
+authorName<br>
+authorTitle<br>
+authorTextField<br>
+authorEmail</p>
+
+<h4>Article:</h4>
+<p>articleAuthorId(foreign key)<br>
+articleId(primary key)<br>
+articleTitle<br>
+articleDateTime<br>
+articleContent</p>
+
+<h3>Relations</h3>
 
 <h2>Entity Relationship Diagram:</h2>
 <p><img src='./diagram.svg' alt='conceptual model diagram'></p>
