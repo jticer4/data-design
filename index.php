@@ -78,8 +78,8 @@ articleDateTime<br>
 articleContent</p>
 
 <h3>Relations</h3>
-<p>Each author can have multiple articles.<br>
-On this site each artile is only written by 1 author.</p>
+<p>Each author can have multiple articles.(1-n)<br>
+On this site each artile is only written by 1 author.(1-1)</p>
 <h2>Entity Relationship Diagram:</h2>
 <p><img src='./diagram.svg' alt='conceptual model diagram'></p>
 ";
