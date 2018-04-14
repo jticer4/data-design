@@ -64,22 +64,29 @@ echo "
 <h2>Conceptual Model: </h2>
 <h3>Entities and Attributes</h3>
 <h4>Author:</h4>
-<p>authorId(primary key)<br>
-authorName<br>
-authorTitle<br>
-authorTextField<br>
-authorEmail</p>
+<ul>
+<li>authorId(primary key)</li>
+<li>authorName</li>
+<li>authorTitle</li>
+<li>authorTextField</li>
+<li>authorEmail</li>
+</ul>
 
 <h4>Article:</h4>
-<p>articleAuthorId(foreign key)<br>
-articleId(primary key)<br>
-articleTitle<br>
-articleDateTime<br>
-articleContent</p>
+<ul>
+<li>articleAuthorId(foreign key)</li>
+<li>articleId(primary key)</li>
+<li>articleTitle</li>
+<li>articleDateTime</li>
+<li>articleContent</li>
+</ul>
+
 
 <h3>Relations</h3>
-<p>Each author can have multiple articles.(1-n)<br>
-On this site each artile is only written by 1 author.(1-1)</p>
+<ul>
+<li>Each author can have multiple articles.(1-n)</li>
+<li>On this site each artile is only written by 1 author.(1-1)</li>
+</ul>
 <h2>Entity Relationship Diagram:</h2>
 <p><img src='./diagram.svg' alt='conceptual model diagram'></p>
 ";
