@@ -23,10 +23,23 @@ version of Windows 10</p>
 echo "<h3>User Story: </h3>
 <p>This is my test field for my user story. </p>";
 echo "<h3>Use/Case Interaction Flow: </h3>";
+echo "<h4>End Goal:</h4>
+<p>Search for content by specific author on Sploid</p>
+<h4>Description:</h4>
+<p>Chris wants to find content on Sploid posted by Andrew Liszewski</p>
+<h4>Preconditions: </h4>
+<p>Chris has successfully connected to the internet and opened his web browser</p>
+<h4>Postconditions:</h4>
+<p>Chris has a list of content posted by Andrew Liszewski.</p>
+<h4>Interaction Flow:</h4>";
 echo "<ul>
-<li>test 1</li>
-<li>test 2</li>
-<li>test 3</li>
+<li>Chris navigates up to the address bar in his browser, types in sploid.gizmodo.com, and 
+hits enter</li>
+<li>The browser returns Sploid's homepage</li>
+<li>Chris navigates to the top left corner of the page and clicks on the magnifying glass icon</li>
+<li>The web browser returns a search field</li>
+<li>Chris clicks on the search field, types in Andrew Liszewski and hits enter</li>
+<li>The web browser returns a list populated with content posted by Andrew Liszewski</li>
 </ul>";
 echo "<h3>Conceptual Model: </h3>
 <p>test field for my conceptual model.</p>";
