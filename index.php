@@ -1,7 +1,7 @@
 <?php
-echo "<title>Data Design</title>";
-echo "<h1>Data Design</h1>";
-echo "<h3>Persona</h3>
+echo "<title>Data Design</title>
+<h1>Data Design</h1>
+<h3>Persona</h3>
 <h4>Name:</h4>
 <p>Chris P. Bacon</p>
 <h4>Gender:</h4>
@@ -19,11 +19,11 @@ version of Windows 10</p>
 <p>To find interesting articles/videos to entertain himself during his lunch break.</p>
 <h4>Frusterations:</h4>
 <p>Chris hates having to scroll through pages of content trying to find something interesting.
- In his experience a lot of websites post too much filler content.</p>";
-echo "<h3>User Story: </h3>
-<p>As a user Chris wants to search for content written by a specific author. </p>";
-echo "<h3>Use/Case Interaction Flow: </h3>";
-echo "<h4>End Goal:</h4>
+ In his experience a lot of websites post too much filler content.</p>
+<h3>User Story: </h3>
+<p>As a user Chris wants to search for content written by a specific author. </p>
+<h3>Use/Case Interaction Flow: </h3>
+<h4>End Goal:</h4>
 <p>Search for content by specific author on Sploid</p>
 <h4>Description:</h4>
 <p>Chris wants to find content on Sploid posted by Andrew Liszewski</p>
@@ -31,8 +31,8 @@ echo "<h4>End Goal:</h4>
 <p>Chris has successfully connected to the internet and opened his web browser</p>
 <h4>Postconditions:</h4>
 <p>Chris has a list of content posted by Andrew Liszewski.</p>
-<h4>Interaction Flow:</h4>";
-echo "<ul>
+<h4>Interaction Flow:</h4>
+<ul>
 <li>Chris navigates up to the address bar in his browser, types in sploid.gizmodo.com, and 
 hits enter</li>
 <li>The browser returns Sploid's homepage</li>
@@ -40,7 +40,7 @@ hits enter</li>
 <li>The web browser returns a search field</li>
 <li>Chris clicks on the search field, types in Andrew Liszewski and hits enter</li>
 <li>The web browser returns a list populated with content posted by Andrew Liszewski</li>
-</ul>";
-echo "<h3>Conceptual Model: </h3>
+</ul>
+<h3>Conceptual Model: </h3>
 <p>test field for my conceptual model.</p>";
 ?>
