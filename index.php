@@ -62,6 +62,6 @@ echo "
 </ul>
 
 <h3>Conceptual Model: </h3>
-<p>test field for my conceptual model.</p>
+<p><img src='./diagram.svg' alt='conceptual model diagram'></p>
 ";
 ?>
