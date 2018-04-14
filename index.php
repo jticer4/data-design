@@ -85,7 +85,7 @@ echo "
 <h3>Relations:</h3>
 <ul>
 <li>Each author can have multiple articles.(1-n)</li>
-<li>On this site each artile is only written by 1 author.(1-1)</li>
+<li>On this site each article is only written by 1 author.(1-1)</li>
 </ul>
 <h2>Entity Relationship Diagram:</h2>
 <p><img src='./diagram.svg' alt='conceptual model diagram'></p>
