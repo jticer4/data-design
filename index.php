@@ -21,7 +21,7 @@ version of Windows 10</p>
 <p>Chris hates having to scroll through pages of content trying to find something interesting.
  In his experience a lot of websites post too much filler content.</p>";
 echo "<h3>User Story: </h3>
-<p>This is my test field for my user story. </p>";
+<p>As a user Chris wants to search for content written by a specific author. </p>";
 echo "<h3>Use/Case Interaction Flow: </h3>";
 echo "<h4>End Goal:</h4>
 <p>Search for content by specific author on Sploid</p>
