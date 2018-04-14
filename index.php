@@ -87,6 +87,6 @@ echo "
 <li>Each author can have multiple articles.(1-n)</li>
 </ul>
 <h2>Entity Relationship Diagram:</h2>
-<p><img src='./diagram.svg' alt='conceptual model diagram'></p>
+<p><img src='./Diagram2.svg' alt='conceptual model diagram'></p>
 ";
 ?>
