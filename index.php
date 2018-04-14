@@ -68,7 +68,7 @@ echo "
 <li>authorId(primary key)</li>
 <li>authorName</li>
 <li>authorTitle</li>
-<li>authorTextField</li>
+<li>authorByline</li>
 <li>authorEmail</li>
 </ul>
 
