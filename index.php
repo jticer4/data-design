@@ -62,6 +62,8 @@ echo "
 </ul>
 
 <h2>Conceptual Model: </h2>
+
+<h2>Entity Relationship Diagram:</h2>
 <p><img src='./diagram.svg' alt='conceptual model diagram'></p>
 ";
 ?>
