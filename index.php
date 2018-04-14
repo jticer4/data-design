@@ -5,7 +5,7 @@ echo "
 <h1>Data Design</h1>
 
 
-<h3>Persona</h3>
+<h2>Persona</h2>
 
 <h4>Name:</h4>
 <p>Chris P. Bacon</p>
@@ -33,11 +33,11 @@ echo "
  In his experience a lot of websites post too much filler content.</p>
 
 
-<h3>User Story: </h3>
+<h2>User Story: </h2>
 <p>As a user Chris wants to search for content written by a specific author. </p>
 
 
-<h3>Use/Case Interaction Flow: </h3>
+<h2>Use/Case Interaction Flow: </h2>
 
 <h4>End Goal:</h4>
 <p>Search for content by specific author on Sploid.</p>
@@ -61,7 +61,7 @@ echo "
 <li>The web browser returns a list populated with content posted by Andrew Liszewski.</li>
 </ul>
 
-<h3>Conceptual Model: </h3>
+<h2>Conceptual Model: </h2>
 <p><img src='./diagram.svg' alt='conceptual model diagram'></p>
 ";
 ?>
