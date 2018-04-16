@@ -35,37 +35,37 @@
 					<p>Chris has successfully connected to the internet and opened his web browser.</p>
 				<h4>Postconditions:</h4>
 					<p>Chris has a list of content posted by Andrew Liszewski.</p>
-					<h4>Interaction Flow:</h4>
-						<ul>
-							<li>Chris navigates up to the address bar in his browser, types in sploid.gizmodo.com, and hits enter.</li>
-							<li>The browser returns Sploid's homepage.</li>
-							<li>Chris navigates to the top left corner of the page and clicks on the magnifying glass icon.</li>
-							<li>The web browser returns a search field.</li>
-							<li>Chris clicks on the search field, types in Andrew Liszewski and hits enter.</li>
-							<li>The web browser returns a list populated with content posted by Andrew Liszewski.</li>
-					</ul>
+						<h4>Interaction Flow:</h4>
+							<ul>
+								<li>Chris navigates up to the address bar in his browser, types in sploid.gizmodo.com, and hits enter.</li>
+								<li>The browser returns Sploid's homepage.</li>
+								<li>Chris navigates to the top left corner of the page and clicks on the magnifying glass icon.</li>
+								<li>The web browser returns a search field.</li>
+								<li>Chris clicks on the search field, types in Andrew Liszewski and hits enter.</li>
+								<li>The web browser returns a list populated with content posted by Andrew Liszewski.</li>
+						</ul>
 			<h2>Conceptual Model: </h2>
 				<h3>Entities and Attributes</h3>
 					<h4>Author:</h4>
-					<ul>
-					<li>authorId(primary key)</li>
-					<li>authorName</li>
-					<li>authorTitle</li>
-					<li>authorByline</li>
-					<li>authorEmail</li>
-					</ul>
+						<ul>
+							<li>authorId(primary key)</li>
+							<li>authorName</li>
+							<li>authorTitle</li>
+							<li>authorByline</li>
+							<li>authorEmail</li>
+						</ul>
 					<h4>Article:</h4>
-					<ul>
-					<li>articleAuthorId(foreign key)</li>
-					<li>articleId(primary key)</li>
-					<li>articleTitle</li>
-					<li>articleDateTime</li>
-					<li>articleContent</li>
-					</ul>
+						<ul>
+							<li>articleAuthorId(foreign key)</li>
+							<li>articleId(primary key)</li>
+							<li>articleTitle</li>
+							<li>articleDateTime</li>
+							<li>articleContent</li>
+						</ul>
 				<h3>Relations:</h3>
-				<ul>
-					<li>Each author can have multiple articles.(1-n)</li>
-				</ul>
+					<ul>
+						<li>Each author can have multiple articles.(1-n)</li>
+					</ul>
 			<h2>Entity Relationship Diagram:</h2>
 				<p><img src='diagram2.svg' alt='conceptual model diagram'></p>
 	</body>
