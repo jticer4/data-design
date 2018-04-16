@@ -49,18 +49,18 @@
 					<h4>Author:</h4>
 						<ul>
 							<li>authorId(primary key)</li>
-							<li>authorName</li>
-							<li>authorTitle</li>
 							<li>authorByline</li>
 							<li>authorEmail</li>
+							<li>authorName</li>
+							<li>authorTitle</li>
 						</ul>
 					<h4>Article:</h4>
 						<ul>
-							<li>articleAuthorId(foreign key)</li>
 							<li>articleId(primary key)</li>
-							<li>articleTitle</li>
-							<li>articleDateTime</li>
+							<li>articleAuthorId(foreign key)</li>
 							<li>articleContent</li>
+							<li>articleDateTime</li>
+							<li>articleTitle</li>
 						</ul>
 				<h3>Relations:</h3>
 					<ul>
