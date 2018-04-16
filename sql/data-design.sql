@@ -27,8 +27,9 @@ CREATE TABLE article (
 	articleContent VARCHAR(65536) NOT NULL,
 	-- index my articleAuthorId before making a foreign key
 	INDEX(articleAuthorId),
+	PRIMARY KEY(articleId)
 	-- create my foreign key
 	FOREIGN KEY(articleAuthorId) REFERENCES author(authorId),
 	-- create my primary key
-	PRIMARY KEY(articleId)
+
 );
