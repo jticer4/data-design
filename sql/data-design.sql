@@ -7,11 +7,11 @@ DROP TABLE IF EXISTS article;
 
 -- create the new tables
 CREATE TABLE author (
+	authorByline VARCHAR(256),
+	authorEmail VARCHAR(256) NOT NULL,
 	authorId BINARY(16) NOT NULL,
 	authorName VARCHAR(64) NOT NULL,
 	authorTitle VARCHAR(256) NOT NULL,
-	authorByline VARCHAR(256),
-	authorEmail VARCHAR(256) NOT NULL,
 	-- create unique indexes so that there is no duplicate data
 	UNIQUE(authorEmail),
 	-- set my primary key
@@ -21,10 +21,10 @@ CREATE TABLE author (
 
 CREATE TABLE article (
 	articleAuthorId BINARY(16) NOT NULL ,
+	articleContent VARCHAR(65536) NOT NULL,
+	articleDateTime DATETIME NOT NULL,
 	articleId BINARY(16) NOT NULL ,
 	articleTitle VARCHAR(256) NOT NULL,
-	articleDateTime DATETIME NOT NULL,
-	articleContent VARCHAR(65536) NOT NULL,
 	-- index my articleAuthorId before making a foreign key
 	INDEX(articleAuthorId),
 	PRIMARY KEY(articleId)
