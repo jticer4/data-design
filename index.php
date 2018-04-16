@@ -43,7 +43,7 @@
 								<li>The web browser returns a search field.</li>
 								<li>Chris clicks on the search field, types in Andrew Liszewski and hits enter.</li>
 								<li>The web browser returns a list populated with content posted by Andrew Liszewski.</li>
-						</ul>
+							</ul>
 			<h2>Conceptual Model: </h2>
 				<h3>Entities and Attributes</h3>
 					<h4>Author:</h4>
