@@ -21,7 +21,7 @@
 					<p>Busy, intellectual, who prefers to consume intellectually stimulating content.</p>
 				<h4>Goals:</h4>
 					<p>To find interesting articles/videos to entertain himself during his lunch break.</p>
-				<h4>Frusterations:</h4>
+				<h4>Frustrations:</h4>
 					<p>Chris hates having to scroll through pages of content trying to find something interesting.
 					In his experience a lot of websites post too much filler content.</p>
 			<h2>User Story: </h2>
