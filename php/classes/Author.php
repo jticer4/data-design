@@ -42,6 +42,8 @@ class author {
 	/**
 	 * mutator method for author id
 	 * @param $newAuthorId
+	 * @throws \RangeException if $newAuthorId is not positive
+	 * @throws \TypeError if $newAuthorId is not an integer
 	 **/
 	public function setAuthorId($newAuthorId) : void {
 		try {
@@ -58,7 +60,7 @@ class author {
 
 	/**
 	 * accessor method for author by line
-	 * @return string
+	 * @return string value of the author by line content
 	 **/
 	public function getAuthorByline() : string {
 		return($this->authorByline);
@@ -66,10 +68,11 @@ class author {
 
 	/**
 	 * mutator method for author byline
-	 * @param $authorByline
+	 * @param string $newAuthorByline  new value of the author by line
 	 **/
-	public function setAuthorByline($authorByline) : void {
-		$this->authorByline = $authorByline;
+	public function setAuthorByline($newAuthorByline) : void {
+
+		$this->authorByline = $newAuthorByline;
 	}
 
 	/**
