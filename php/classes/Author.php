@@ -69,9 +69,25 @@ class author {
 	/**
 	 * mutator method for author byline
 	 * @param string $newAuthorByline  new value of the author by line
+	 * @throws \InvalidArgumentException if $newAuthorByline is not a string or insecure
+	 * @throws \RangeException if $newAuthorByline is > 256 characters
+	 * @throws \TypeError if $newAuthorByline is not a string
 	 **/
-	public function setAuthorByline($newAuthorByline) : void {
+	public function setAuthorByline(string $newAuthorByline) : void {
 
+// verify the author byline content is secure
+		$newAuthorByline = trim($newAuthorByline);
+		$newAuthorByline = filter_var($newAuthorByline, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newAuthorByline) === true) {
+			throw(new \InvalidArgumentException("byline content is empty or insecure"));
+		}
+
+		// verify the tweet content will fit in the database
+		if(strlen($newAuthorByline) > 256) {
+			throw(new \RangeException("byline content too large"));
+		}
+
+		// store the tweet content
 		$this->authorByline = $newAuthorByline;
 	}
 
@@ -85,10 +101,26 @@ class author {
 
 	/**
 	 * mutator method for author email
-	 * @param $authorEmail
+	 * @param string $newAuthorEmail new value of the author email
+	 * @throws \InvalidArgumentException if $newTweetContent is not a string or insecure
+	 * @throws \RangeException if $newTweetContent is > 256 characters
+	 * @throws \TypeError if $newTweetContent is not a string
 	 **/
-	public function setAuthorEmail($authorEmail) : void {
-		$this->authorEmail = $authorEmail;
+	public function setAuthorEmail(string $newAuthorEmail) : void {
+		// verify the tweet content is secure
+		$newAuthorEmail = trim($newAuthorEmail);
+		$newAuthorEmail = filter_var($newAuthorEmail, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newAuthorEmail) === true) {
+			throw(new \InvalidArgumentException("email address content is empty or insecure"));
+		}
+
+		// verify the tweet content will fit in the database
+		if(strlen($newAuthorEmail) > 256) {
+			throw(new \RangeException("email address content too large"));
+		}
+
+		// store the tweet content
+		$this->authorEmail = $newAuthorEmail;
 	}
 
 	/**
@@ -101,10 +133,26 @@ class author {
 
 	/**
 	 * mutator method for author name
-	 * @param $authorName
+	 * @param $newAuthorName
+	 * @throws \InvalidArgumentException if $newAuthorName is not a string or insecure
+	 * @throws \RangeException if $newAuthorName is > 64 characters
+	 * @throws \TypeError if $newAuthorName is not a string
 	 **/
-	public function setAuthorName($authorName) : void {
-		$this->authorName = $authorName;
+	public function setAuthorName(string $newAuthorName) : void {
+		// verify the tweet content is secure
+		$newAuthorName = trim($newAuthorName);
+		$newAuthorName = filter_var($newAuthorName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newAuthorName) === true) {
+			throw(new \InvalidArgumentException("name is empty or insecure"));
+		}
+
+		// verify the tweet content will fit in the database
+		if(strlen($newAuthorName) > 64) {
+			throw(new \RangeException("name too large"));
+		}
+
+		// store the tweet content
+		$this->authorName = $newAuthorName;
 	}
 
 	/**
@@ -117,13 +165,30 @@ class author {
 
 	/**
 	 * mutator method for author title
-	 * @param $authorTitle
+	 * @param $newAuthorTitle
+	 * @throws \InvalidArgumentException if $newAuthorTitle is not a string or insecure
+	 * @throws \RangeException if $newAuthorTitle is > 256 characters
+	 * @throws \TypeError if $newAuthorTitle is not a string
 	 **/
-	public function setAuthorTitle($authorTitle) : void {
-		$this->authorTitle = $authorTitle;
+	public function setAuthorTitle(string $newAuthorTitle) : void {
+		// verify the tweet content is secure
+		$newAuthorTitle = trim($newAuthorTitle);
+		$newAuthorTitle = filter_var($newAuthorTitle, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newAuthorTitle) === true) {
+			throw(new \InvalidArgumentException("title content is empty or insecure"));
+		}
+
+		// verify the tweet content will fit in the database
+		if(strlen($newAuthorTitle) > 140) {
+			throw(new \RangeException("title content too large"));
+		}
+
+		// store the tweet content
+		$this->authorTitle = $newAuthorTitle;
 	}
 
 	/**
+	 * @param $newAuthorId
 	 * this is my constructor method
 	 * it sets all emails to the same email when an instance of the author class is created
 	 **/
