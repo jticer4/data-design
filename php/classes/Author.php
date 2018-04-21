@@ -208,8 +208,6 @@ class author {
 		$this->authorTitle = $newAuthorTitle;
 	}
 
-
-
 }
 
 /**

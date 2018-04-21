@@ -162,10 +162,26 @@ class article {
 
 	/**
 	 * mutator method for the article title
-	 * @param string $articleTitle
+	 * @param string $newArticleTitle
+	 * @throws \InvalidArgumentException if $newArticleTitle is not a string or insecure
+	 * @throws \RangeException if $newArticleTitle is > 256 characters
+	 * @throws \TypeError if $newArticleTitle is not a string
 	 **/
-	public function setArticleTitle(string $articleTitle): void {
-		$this->articleTitle = $articleTitle;
+	public function setArticleTitle(string $newArticleTitle): void {
+		// verify the article title content is secure
+		$newArticleTitle = trim($newArticleTitle);
+		$newArticleTitle = filter_var($newArticleTitle, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newArticleTitle) === true) {
+			throw(new \InvalidArgumentException("article title is empty or insecure"));
+		}
+
+		// verify the article title content will fit in the database
+		if(strlen($newArticleTitle) > 140) {
+			throw(new \RangeException("article title too large"));
+		}
+
+		// store the article title content
+		$this->articleTitle = $newArticleTitle;
 	}
 
 
