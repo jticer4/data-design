@@ -98,11 +98,27 @@ class article {
 	}
 
 	/**
-	 * mutator method for the article content
-	 * @param string $articleContent
+	 * mutator method for the new article content
+	 * @param string $newArticleContent
+	 * @throws \InvalidArgumentException if $newArticleContent is not a string or insecure
+	 * @throws \RangeException if $newArticleContent is > 1024 characters
+	 * @throws \TypeError if $newArticleContent is not a string
 	 **/
-	public function setArticleContent(string $articleContent): void {
-		$this->articleContent = $articleContent;
+	public function setArticleContent(string $newArticleContent): void {
+		// verify the article content is secure
+		$newArticleContent = trim($newArticleContent);
+		$newArticleContent = filter_var($newArticleContent, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newArticleContent) === true) {
+			throw(new \InvalidArgumentException("article content is empty or insecure"));
+		}
+
+		// verify the article content will fit in the database
+		if(strlen($newArticleContent) > 1024) {
+			throw(new \RangeException("article content too large"));
+		}
+
+		// store the article content
+		$this->articleContent = $newArticleContent;
 	}
 
 	/**
