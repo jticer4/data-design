@@ -130,9 +130,9 @@ class author {
 	public function setAuthorEmail(string $newAuthorEmail) : void {
 		// verify the email address content is secure
 		$newAuthorEmail = trim($newAuthorEmail);
-		$newAuthorEmail = filter_var($newAuthorEmail, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		$newAuthorEmail = filter_var($newAuthorEmail, FILTER_SANITIZE_EMAIL, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if(empty($newAuthorEmail) === true) {
-			throw(new \InvalidArgumentException("email address is empty or insecure"));
+			throw(new \InvalidArgumentException("email address is empty or not valid"));
 		}
 
 		// verify the email address content will fit in the database
