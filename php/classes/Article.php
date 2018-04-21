@@ -47,7 +47,7 @@ class article {
 
 	/**
 	 * mutator method for article id
-	 * @param string | Uuid $articleId
+	 * @param string | Uuid $newArticleId
 	 * @throws \RangeException if $newArticleId is not positive
 	 * @throws \TypeError if $newArticleId is not an integer
 	 **/
@@ -73,7 +73,7 @@ class article {
 
 	/**
 	 * mutator method for the article author id
-	 * @param string | Uuid $articleAuthorId
+	 * @param string | Uuid $newArticleAuthorId
 	 * @throws \RangeException if $newArticleAuthorId is not positive
 	 * @throws \TypeError if $newArticleAuthorId is not an integer
 	 **/
@@ -123,7 +123,7 @@ class article {
 
 	/**
 	 * accessor method for the article date time
-	 * @return DateTime
+	 * @return \DateTime value of article date
 	 **/
 	public function getArticleDateTime(): DateTime {
 		return $this->articleDateTime;
@@ -138,7 +138,7 @@ class article {
 	public function setArticleDateTime($newArticleDateTime = null): void {
 		// base case: if the date is null, use the current date and time
 		if($newArticleDateTime === null) {
-			$this->ArticleDateTime = new \DateTime();
+			$this->articleDateTime = new \DateTime();
 			return;
 		}
 
