@@ -38,6 +38,22 @@ class article {
 	protected $articleTitle;
 
 	/**
+	 * article constructor.
+	 * @param Uuid $articleId
+	 * @param Uuid $articleAuthorId
+	 * @param string $articleContent
+	 * @param \DateTime $articleDateTime
+	 * @param string $articleTitle
+	 */
+	public function __construct(Uuid $articleId, Uuid $articleAuthorId, string $articleContent, \DateTime $articleDateTime, string $articleTitle) {
+		$this->articleId = $articleId;
+		$this->articleAuthorId = $articleAuthorId;
+		$this->articleContent = $articleContent;
+		$this->articleDateTime = $articleDateTime;
+		$this->articleTitle = $articleTitle;
+	}
+
+	/**
 	 * accessor method for article id
 	 * @return Uuid
 	 **/
