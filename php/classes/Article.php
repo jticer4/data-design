@@ -131,10 +131,25 @@ class article {
 
 	/**
 	 * mutator method for the article date time
-	 * @param DateTime|string|null $articleDateTime article date as a Date Time object or string(or null for the current time)
+	 * @param DateTime|string|null $newArticleDateTime article date as a Date Time object or string(or null for the current time)
+	 * @throws \InvalidArgumentException if $newArticleDateTime is not a valid object or string
+	 * @throws \RangeException if $newArticleDateTime is a date that does not exist
 	 **/
-	public function setArticleDateTime(DateTime $articleDateTime): void {
-		$this->articleDateTime = $articleDateTime;
+	public function setArticleDateTime($newArticleDateTime = null): void {
+		// base case: if the date is null, use the current date and time
+		if($newArticleDateTime === null) {
+			$this->ArticleDateTime = new \DateTime();
+			return;
+		}
+
+		// store the article date using the ValidateDate trait
+		try {
+			$newArticleDateTime = self::validateDateTime($newArticleDateTime);
+		} catch(\InvalidArgumentException | \RangeException $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+		$this->articleDateTime = $newArticleDateTime;
 	}
 
 	/**
