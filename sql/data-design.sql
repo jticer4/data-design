@@ -33,7 +33,3 @@ CREATE TABLE article (
 	-- create my primary key
 	PRIMARY KEY(articleId)
 );
-
-INSERT INTO author(authorId, authorByline, authorEmail, authorName, authorTitle) VALUES('1', 'testing 123', 'mike@gmail.com', 'Mike Wazaoski', 'Chief of Monsters');
--- I need to figure out how to use UUIDs to avoid enumeration attacks
-DELETE FROM author WHERE authorId = '1';
