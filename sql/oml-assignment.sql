@@ -29,6 +29,7 @@
 		$statement = $pdo->prepare($query);
 
 		// bind the member variables to the place holders in the template
-		$parameters = ["authorId" => $this->authorId->getBytes(), "authorByline" => $this->authorByline, "authorEmail" => $this->authorEmail, "authorName" => $this->authorName, "authorTitle" => $this->authorTitle];
+		$formattedDate = $this->articleDateTime->format("Y-m-d H:i:s.u");
+		$parameters = ["articleId" => $this->articleId->getBytes(), "articleAuthorId" => $this->articleAuthorId->getBytes(), "articleContent" => $this->articleContent, "articleDateTime" => $formattedDate, "articleTitle" => $this->articleTitle];
 		$statement->execute($parameters);
 	}
