@@ -208,13 +208,54 @@ class author {
 		$this->authorTitle = $newAuthorTitle;
 	}
 
+	/**
+	 * inserts this Author into mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function insert($pdo) : void {
+
+		// create query template
+		$query = "INSERT INTO author(authorId, authorByline, authorEmail, authorName, authorTitle) VALUES(:authorId, :authorByline, :authorEmail, :authorName)";
+		$statement = $pdo->prepare($query);
+
+		// bind the member variables to the place holders in the template
+		$parameters = ["authorId" => $this->authorId->getBytes(), "authorByline" => $this->authorByline, "authorEmail" => $this->authorEmail, "authorName" => $this->authorName, "authorTitle" => $this->authorTitle];
+		$statement->execute($parameters);
+	}
+	/**
+	 * deletes this Author from mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function delete($pdo) : void {
+
+		// create query template
+		$query = "DELETE FROM author WHERE authorId = :authorId";
+		$statement = $pdo->prepare($query);
+
+		// bind the member variables to the place holder in the template
+		$parameters = ["authorId" => $this->authorId->getBytes()];
+		$statement->execute($parameters);
+	}
+	/**
+	 * updates this Author in mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function update($pdo) : void {
+
+		// create query template
+		$query = "UPDATE author SET authorByline = :authorByline, authorEmail = :authorEmail WHERE authorId = :authorId";
+		$statement = $pdo->prepare($query);
+
+		$parameters = ["authorId" => $this->authorId->getBytes(), "authorByline" => $this->authorByline, "authorEmail" => $this->authorEmail];
+		$statement->execute($parameters);
+	}
 }
-
-/**
- * create an instance of our author class
-**/
-$drSeuss = new author();
-
-$drSeuss->setAuthorName("Dr. Seuss");
-$drSeuss->setAuthorTitle("Cheif of Green Eggs and Ham");
-echo "This author is " . $drSeuss->getAuthorName() . " and his Title is " . $drSeuss->getAuthorTitle();
