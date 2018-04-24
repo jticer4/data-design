@@ -7,5 +7,8 @@ INSERT INTO author (authorId, authorByline, authorEmail, authorName, authorTitle
 UPDATE author set authorEmail = 'charlesdickens@gmail.com' WHERE authorEmail = 'cdickens@aol.com';
 UPDATE author set authorByline = 'If you never did you should. These things are fun, and fun is good' WHERE authorByline = 'From there to here, and here to there, funny things are everywhere.';
 
+SELECT authorName FROM author WHERE authorTitle = 'Chief of Green Eggs and Ham';
+SELECT authorTitle FROM author WHERE authorName = 'Charles Dickens';
+
 DELETE FROM author WHERE authorName = 'Charles Dickens';
 DELETE FROM author WHERE authorEmail = 'drseuss@gmail.com';
