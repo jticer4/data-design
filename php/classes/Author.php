@@ -258,4 +258,83 @@ class author {
 		$parameters = ["authorId" => $this->authorId->getBytes(), "authorByline" => $this->authorByline, "authorEmail" => $this->authorEmail];
 		$statement->execute($parameters);
 	}
+	/**
+	 * gets the Foo by FooId
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param Uuid|string $FooId foo id to search for
+	 * @return Foo|null Foo found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when a variable are not the correct data type
+	 **/
+	public static function getFooByFooId($pdo, $fooId) : ?Foo {
+		// sanitize the fooId before searching
+		try {
+			$fooId = self::validateUuid($fooId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+
+		// create query template
+		$query = "SELECT fooId, fooBarId, fooContent, fooDateTime FROM foo WHERE fooId = :fooId";
+		$statement = $pdo->prepare($query);
+
+		// bind the foo id to the place holder in the template
+		$parameters = ["fooId" => $fooId->getBytes()];
+		$statement->execute($parameters);
+
+		// grab the foo from mySQL
+		try {
+			$foo = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$foo = new Foo($row["fooId"], $row["fooBarId"], $row["fooContent"], $row["fooDate"]);
+			}
+		} catch(\Exception $exception) {
+			// if the row couldn't be converted, rethrow it
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return($foo);
+	}
+
+	/**
+	 * gets the Foo by Bar id
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param Uuid|string $fooBarId profile id to search by
+	 * @return \SplFixedArray SplFixedArray of Foos found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getFooByFooBarId(\PDO $pdo, $fooBarId) : \SplFixedArray {
+
+		try {
+			$fooBarId = self::validateUuid($fooBarId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+
+		// create query template
+		$query = "SELECT fooId, fooBarId, fooContent, fooDate FROM foo WHERE fooBarId = :fooBarId";
+		$statement = $pdo->prepare($query);
+		// bind the foo bar id to the place holder in the template
+		$parameters = ["fooBarId" => $fooBarId->getBytes()];
+		$statement->execute($parameters);
+		// build an array of foos
+		$foos = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$foo = new Foo($row["fooId"], $row["fooBarId"], $row["fooContent"], $row["fooDate"]);
+				$foos[$foos->key()] = $foo;
+				$foos->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($foos);
+	}
+
 }
