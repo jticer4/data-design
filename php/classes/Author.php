@@ -218,7 +218,7 @@ class author {
 	public function insert($pdo) : void {
 
 		// create query template
-		$query = "INSERT INTO author(authorId, authorByline, authorEmail, authorName, authorTitle) VALUES(:authorId, :authorByline, :authorEmail, :authorName)";
+		$query = "INSERT INTO author(authorId, authorByline, authorEmail, authorName, authorTitle) VALUES(:authorId, :authorByline, :authorEmail, :authorName, authorTitle)";
 		$statement = $pdo->prepare($query);
 
 		// bind the member variables to the place holders in the template
