@@ -40,11 +40,11 @@ class article implements \JsonSerializable {
 
 	/**
 	 * article constructor.
-	 * @param Uuid $articleId
-	 * @param Uuid $articleAuthorId
-	 * @param string $articleContent
-	 * @param \DateTime $articleDateTime
-	 * @param string $articleTitle
+	 * @param Uuid $articleId id for this article, or null if a new article
+	 * @param Uuid $articleAuthorId id of the author who posted this article
+	 * @param string $articleContent string containing the article content
+	 * @param \DateTime|string|null $articleDateTime date and time the article was posted, or null if set to current date and time
+	 * @param string $articleTitle string containing the article title
 	 */
 	public function __construct(Uuid $articleId, Uuid $articleAuthorId, string $articleContent, \DateTime $articleDateTime, string $articleTitle) {
 		$this->articleId = $articleId;

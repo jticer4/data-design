@@ -41,11 +41,11 @@ class author implements \JsonSerializable {
 
 	/**
 	 * author constructor.
-	 * @param Uuid $authorId
-	 * @param string $authorByline
-	 * @param string $authorEmail
-	 * @param string $authorName
-	 * @param string $authorTitle
+	 * @param Uuid $authorId id for this author, or null if a new author
+	 * @param string $authorByline string containing the authorByline
+	 * @param string $authorEmail string containing the author email
+	 * @param string $authorName string containing the author name
+	 * @param string $authorTitle string containing the author title
 	 */
 	public function __construct(Uuid $authorId, string $authorByline, string $authorEmail, string $authorName, string $authorTitle) {
 		$this->authorId = $authorId;
