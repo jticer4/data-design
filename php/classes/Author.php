@@ -5,7 +5,10 @@ require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
 
 use Ramsey\Uuid\Uuid;
 
-class author {
+class author implements \JsonSerializable {
+
+	use ValidateUuid;
+
 	/**
 	 * id for this author, this is the primary key
 	 * @var Uuid $authorId
@@ -382,4 +385,16 @@ class author {
 		return($foos);
 	}
 
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize() : array {
+		$fields = get_object_vars($this);
+
+		$fields["authorId"] = $this->authorId->toString();
+
+		return($fields);
+	}
 }

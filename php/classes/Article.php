@@ -5,8 +5,9 @@ require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
 
 use Ramsey\Uuid\Uuid;
 
-class article {
-
+class article implements \JsonSerializable {
+	use ValidateDate;
+	use ValidateUuid;
 	/**
 	 * id for this article, this will be my primary key
 	 * @var Uuid $articleId
@@ -255,4 +256,20 @@ class article {
 		$parameters = ["articleId" => $this->articleId->getBytes(),"articleAuthorId" => $this->articleAuthorId->getBytes(), "articleContent" => $this->articleContent, "articleDateTime" => $formattedDate, "articleTitle" => $this->articleTitle];
 		$statement->execute($parameters);
 	}
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize() : array {
+		$fields = get_object_vars($this);
+
+		$fields["articleId"] = $this->articleId->toString();
+		$fields["articleAuthorId"] = $this->articleAuthorId->toString();
+
+		//format the date so that the front end can consume it
+		$fields["articleDateTime"] = round(floatval($this->articleDateTime->format("U.u")) * 1000);
+		return($fields);
+	}
+
 }
