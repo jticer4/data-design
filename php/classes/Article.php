@@ -297,6 +297,50 @@ class article implements \JsonSerializable {
 	}
 
 	/**
+	 * gets the Foo by content
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param string $fooContent foo content to search for
+	 * @return \SplFixedArray SplFixedArray of Foos found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getFooByFooContent(\PDO $pdo, string $fooContent) : \SplFixedArray {
+		// sanitize the description before searching
+		$fooContent = trim($fooContent);
+		$fooContent = filter_var($fooContent, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($fooContent) === true) {
+			throw(new \PDOException("foo content is invalid"));
+		}
+
+		// escape any mySQL wild cards
+		$fooContent = str_replace("_", "\\_", str_replace("%", "\\%", $fooContent));
+
+		// create query template
+		$query = "SELECT fooId, fooBarId, fooContent, fooDate FROM foo WHERE fooContent LIKE :fooContent";
+		$statement = $pdo->prepare($query);
+
+		// bind the foo content to the place holder in the template
+		$fooContent = "%$fooContent%";
+		$parameters = ["fooContent" => $fooContent];
+		$statement->execute($parameters);
+
+		// build an array of foos
+		$foos = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$foo = new Foo($row["fooId"], $row["fooBarId"], $row["fooContent"], $row["fooDate"]);
+				$foos[$foos->key()] = $foo;
+				$foos->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($foos);
+	}
+	/**
 	 * formats the state variables for JSON serialization
 	 *
 	 * @return array resulting state variables to serialize
