@@ -262,43 +262,43 @@ class author implements \JsonSerializable {
 		$statement->execute($parameters);
 	}
 	/**
-	 * gets the Foo by FooId
+	 * gets the Author by authorId
 	 *
 	 * @param \PDO $pdo PDO connection object
-	 * @param Uuid|string $FooId foo id to search for
-	 * @return Foo|null Foo found or null if not found
+	 * @param Uuid|string $authorId author id to search for
+	 * @return Author|null Author found or null if not found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when a variable are not the correct data type
 	 **/
-	public static function getFooByFooId($pdo, $fooId) : ?Foo {
-		// sanitize the fooId before searching
+	public static function getAuthorByAuthorId($pdo, $authorId) : ?Author {
+		// sanitize the authorId before searching
 		try {
-			$fooId = self::validateUuid($fooId);
+			$authorId = self::validateUuid($authorId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
 
 		// create query template
-		$query = "SELECT fooId, fooBarId, fooContent, fooDateTime FROM foo WHERE fooId = :fooId";
+		$query = "SELECT authorId, authorByline, authorEmail, authorName, authorTitle FROM author WHERE authorId = :authorId";
 		$statement = $pdo->prepare($query);
 
-		// bind the foo id to the place holder in the template
-		$parameters = ["fooId" => $fooId->getBytes()];
+		// bind the author id to the place holder in the template
+		$parameters = ["authorId" => $authorId->getBytes()];
 		$statement->execute($parameters);
 
-		// grab the foo from mySQL
+		// grab the author from mySQL
 		try {
-			$foo = null;
+			$author = null;
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			$row = $statement->fetch();
 			if($row !== false) {
-				$foo = new Foo($row["fooId"], $row["fooBarId"], $row["fooContent"], $row["fooDate"]);
+				$author= new Author($row["authorId"], $row["authorByline"], $row["authorEmail"], $row["authorName"], $row["authorTitle"]);
 			}
 		} catch(\Exception $exception) {
 			// if the row couldn't be converted, rethrow it
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		return($foo);
+		return($author);
 	}
 
 	/**
