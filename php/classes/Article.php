@@ -142,13 +142,13 @@ class article implements \JsonSerializable {
 	 * accessor method for the article date time
 	 * @return \DateTime value of article date
 	 **/
-	public function getArticleDateTime(): DateTime {
+	public function getArticleDateTime(): \DateTime {
 		return $this->articleDateTime;
 	}
 
 	/**
 	 * mutator method for the article date time
-	 * @param DateTime|string|null $newArticleDateTime article date as a Date Time object or string(or null for the current time)
+	 * @param \DateTime|string|null $newArticleDateTime article date as a Date Time object or string(or null for the current time)
 	 * @throws \InvalidArgumentException if $newArticleDateTime is not a valid object or string
 	 * @throws \RangeException if $newArticleDateTime is a date that does not exist
 	 **/
@@ -161,7 +161,7 @@ class article implements \JsonSerializable {
 
 		// store the article date using the ValidateDate trait
 		try {
-			$newArticleDateTime = self::validateDateTime($newArticleDateTime);
+			$newArticleDateTime = self::validateDate($newArticleDateTime);
 		} catch(\InvalidArgumentException | \RangeException $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
@@ -257,45 +257,44 @@ class article implements \JsonSerializable {
 		$statement->execute($parameters);
 	}
 
-	/**
-	 * gets the Foo by Bar id
-	 *
-	 * @param \PDO $pdo PDO connection object
-	 * @param Uuid|string $fooBarId bar id to search by
-	 * @return \SplFixedArray SplFixedArray of Foos found
-	 * @throws \PDOException when mySQL related errors occur
-	 * @throws \TypeError when variables are not the correct data type
-	 **/
-	public static function getFooByFooBarId(\PDO $pdo, $fooBarId) : \SplFixedArray {
+/**
+* gets the Article by author id
+*
+* @param \PDO $pdo PDO connection object
+* @param Uuid|string $articleAuthorId author id to search by
+* @return \SplFixedArray SplFixedArray of Articles found
+* @throws \PDOException when mySQL related errors occur
+* @throws \TypeError when variables are not the correct data type
+**/
+	public static function getArticleByArticleAuthorId(\PDO $pdo, $articleAuthorId) : \SplFixedArray {
 
 		try {
-			$fooBarId = self::validateUuid($fooBarId);
+			$articleAuthorId = self::validateUuid($articleAuthorId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
 
 		// create query template
-		$query = "SELECT fooId, fooBarId, fooContent, fooDate FROM foo WHERE fooBarId = :fooBarId";
+		$query = "SELECT articleId, articleAuthorId, articleContent, articleDateTime, articleTitle FROM article WHERE articleAuthorId = :articleAuthorId";
 		$statement = $pdo->prepare($query);
-		// bind the foo bar id to the place holder in the template
-		$parameters = ["fooBarId" => $fooBarId->getBytes()];
+		// bind the article author id to the place holder in the template
+		$parameters = ["articleAuthorId" => $articleAuthorId->getBytes()];
 		$statement->execute($parameters);
-		// build an array of foos
-		$foos = new \SplFixedArray($statement->rowCount());
+		// build an array of articles
+		$articles = new \SplFixedArray($statement->rowCount());
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
-				$foo = new Foo($row["fooId"], $row["fooBarId"], $row["fooContent"], $row["fooDate"]);
-				$foos[$foos->key()] = $foo;
-				$foos->next();
+				$article = new Article($row["articleId"], $row["articleAuthorId"], $row["articleContent"], $row["articleDateTime"], $row["articleTitle"]);
+				$articles[$articles->key()] = $article;
+				$articles->next();
 			} catch(\Exception $exception) {
 				// if the row couldn't be converted, rethrow it
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
 		}
-		return($foos);
+		return($articles);
 	}
-
 
 	/**
 	 * formats the state variables for JSON serialization
